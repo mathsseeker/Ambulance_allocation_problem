@@ -88,3 +88,4 @@ instance that meets the capacity guarantee; at M = 2 it solves 1,620 that strict
 At T = 30 the instance is nearly trivial (every base covers every area); use T = 10–20.
 # Ambulance_reallocation_problem
 # Ambulance_reallocation_problem
+# Ambulance_reallocation_problem
