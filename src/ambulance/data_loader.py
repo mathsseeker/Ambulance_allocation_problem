@@ -14,7 +14,7 @@ import numpy as np
 from .data import loader, prepare
 
 ROOT = Path(__file__).resolve().parents[2]
-RAW_FILE = ROOT / "data" / "raw" / "fez_meknes_ambulance_dataset.xlsx"
+RAW_FILE = ROOT / "data" / "fez_meknes" / "raw" / "fez_meknes_ambulance_dataset.xlsx"
 
 
 @dataclass(frozen=True)

@@ -8,8 +8,8 @@ chance-constrained bound (Model H = hard, Model E = elastic). We test it on the 
 
 ```
 config/default.yaml          data-preparation settings
-data/raw/                    original Zenodo Excel file (read-only)
-data/processed/case{1,2,3}/  clean CSVs per base case + summary.json
+data/fez_meknes/raw/         original Zenodo Excel file (read-only)
+data/fez_meknes/processed/   case{1,2,3}/ clean CSVs per base case + summary.json
 docs/data_guide.md           symbols, sources, and what we found in the data
 src/ambulance/
   data/                      Excel readers and CSV preparation
@@ -18,7 +18,7 @@ src/ambulance/
   model.py                   solve_exact / solve_hard / solve_elastic / solve_robust (gurobipy)
   evaluate.py                evaluate(inst, assignment, model): objective + constraint check, no Gurobi
 scripts/
-  prepare_data.py            rebuilds data/processed
+  prepare_data.py            rebuilds data/fez_meknes/processed
   main.py                    one Case-1 instance, all three models
   feasibility_experiment.py  grid definition (H vs E, superseded T = 15 run)
   robust_comparison.py       base / H / E / R grid -> results/robust_comparison*.csv

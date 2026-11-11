@@ -1,8 +1,8 @@
 # Data preparation settings (scripts/prepare_data.py).
 # Model parameters (T, q, M, lam, P, alpha, cv, C; T2 = 2T) are arguments of
 # ambulance.instance.generate_instance; defaults follow the model spec.
-raw_file: data/raw/fez_meknes_ambulance_dataset.xlsx
-processed_dir: data/processed
+raw_file: data/fez_meknes/raw/fez_meknes_ambulance_dataset.xlsx
+processed_dir: data/fez_meknes/processed
 cases: [1, 2, 3]            # 1 = 18 bases, 2 = 22 bases, 3 = 40 bases
 period: 1                   # travel-time period: 1 = 7h-22h (default), 2 = 22h-7h
 T: 30                       # response-time limit used for a_jv.csv

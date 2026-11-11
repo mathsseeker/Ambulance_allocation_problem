@@ -11,7 +11,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from ambulance.data import derived  # noqa: E402
 
-PROCESSED = ROOT / "data" / "processed"
+PROCESSED = ROOT / "data" / "fez_meknes" / "processed"
 SIZES = {1: 18, 2: 22, 3: 40}
 
 

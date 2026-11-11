@@ -16,7 +16,7 @@ The main decision variable is x_ij = 1 if free ambulance i is assigned to base j
 ## Source
 
 Fez-Meknes (Morocco) ambulance dataset, Zenodo record 6416058, a single Excel file.
-It is stored unchanged and read-only as `data/raw/fez_meknes_ambulance_dataset.xlsx`
+It is stored unchanged and read-only as `data/fez_meknes/raw/fez_meknes_ambulance_dataset.xlsx`
 (MD5 `9379043ccfc869664be4b94eb46ec540`, matching Zenodo). Licence: CC BY 4.0.
 
 - Frichi, Y., Jawab, F., & Aboueljinane, L. (2022). *Dataset on ambulance deployment and redeployment* (V1.0). Zenodo. https://doi.org/10.5281/zenodo.6416058
@@ -32,7 +32,7 @@ It is stored unchanged and read-only as `data/raw/fez_meknes_ambulance_dataset.x
 | d_v | Population share, Σ = 1 | fraction | Table 3 | `areas.csv: d_v` |
 | t_jv | Base → area time | minutes | Tables 9 / 10 / 11 | `t_jv_p1.csv`, `t_jv_p2.csv` |
 | g_jj' | Base → base time | minutes | Tables 12 / 13 / 14 | `g_jj_p1.csv`, `g_jj_p2.csv` |
-| \|I\| options | Fleet size scenarios | count | Table 8 | `data/processed/fleet_options_table8.csv` |
+| \|I\| options | Fleet size scenarios | count | Table 8 | `data/fez_meknes/processed/fleet_options_table8.csv` |
 | T | Response-time limit | minutes | Not in dataset: 15 (paper) | `config/default.yaml` |
 | q | Busy probability | fraction | Not in dataset: 0.3 (paper) | `config/default.yaml` |
 

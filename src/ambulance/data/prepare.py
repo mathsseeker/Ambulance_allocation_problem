@@ -1,6 +1,6 @@
 """Build the per-case processed data from the raw workbook.
 
-Output per case (data/processed/case{c}/):
+Output per case (data/fez_meknes/processed/case{c}/):
     areas.csv        v, name, prefecture, lat, lon, population, d_v, demand, lambda, service time
     bases.csv        j, name, area_v, lat, lon
     t_jv_p1.csv / t_jv_p2.csv   base -> area travel time (minutes)
