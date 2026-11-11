@@ -87,3 +87,4 @@ Runs Base / H / E / R over T ∈ {10, 15, 20, 30} (17,280 instances, ~30 s). Mod
 instance that meets the capacity guarantee; at M = 2 it solves 1,620 that strict E cannot (forced moves > M).
 At T = 30 the instance is nearly trivial (every base covers every area); use T = 10–20.
 # Ambulance_reallocation_problem
+# Ambulance_reallocation_problem
