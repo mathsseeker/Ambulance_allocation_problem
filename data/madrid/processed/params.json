@@ -1,0 +1,54 @@
+{
+  "city": "Madrid",
+  "district": "Fuencarral - El Pardo",
+  "district_code": 8,
+  "neighbour_districts": [
+    "Chamartín",
+    "Tetuán",
+    "Moncloa - Aravaca",
+    "Hortaleza"
+  ],
+  "bases_scope": "distrito_y_limitrofes",
+  "n_areas": 8,
+  "n_bases": 8,
+  "n_bases_in_district": 1,
+  "population_date": "2026-01-01",
+  "population_total": 256037,
+  "samur_year": 2025,
+  "samur": {
+    "year": 2025,
+    "district_label": "FUENCARRAL - EL PARDO",
+    "activations": 6648,
+    "city_activations": 150643,
+    "blank_hora_solicitud": 57,
+    "blank_hora_intervencion_cancelled": 531,
+    "response_time_min": {
+      "n": 6117,
+      "n_midnight_wrap": 28,
+      "min": 0.0,
+      "p10": 4.5499999999999545,
+      "p25": 6.850000000000023,
+      "median": 9.25,
+      "mean": 10.115546836684649,
+      "p75": 11.93333333333328,
+      "p90": 15.116666666666646,
+      "p95": 18.0,
+      "p99": 29.133333333333326,
+      "max": 425.73333333333335,
+      "share_le_8": 0.36455778976622527,
+      "share_le_15": 0.8961909432728462,
+      "share_le_30": 0.9908451855484715,
+      "n_gt_120": 7
+    }
+  },
+  "time_unit": "minutes",
+  "travel_time_source": "OSRM demo server (router.project-osrm.org), car profile, OSM data",
+  "osrm_query_utc": "2026-11-11T18:36:34Z",
+  "capacity_C_j": {
+    "value": 5,
+    "method": "estimated_uniform: round((51 SVA + 68 SVB operational on 2024-12-31) / 25 bases)",
+    "official_per_base": "not available",
+    "source": "https://www.madrid.es/portales/munimadrid/es/Inicio/Seguridad-y-emergencias/SAMUR-Proteccion-Civil/?vgnextfmt=default&vgnextoid=c88fcdb1bfffa010VgnVCM100000d90ca8c0RCRD&vgnextchannel=f9cd31d3b28fe410VgnVCM1000000b205a0aRCRD&idCapitulo=10269430",
+    "accessed": "2026-11-11"
+  }
+}

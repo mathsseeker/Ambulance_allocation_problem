@@ -1,0 +1,41 @@
+{
+  "source_list_with_coordinates": {
+    "url": "https://www.madrid.es/portales/munimadrid/es/Inicio/Seguridad-y-emergencias/SAMUR-Proteccion-Civil/Bases-operativas/?vgnextfmt=default&vgnextoid=e20c2593aee7f910VgnVCM100000891ecb1aRCRD&vgnextchannel=42427429f2d7a910VgnVCM100000891ecb1aRCRD",
+    "title": "Bases operativas - Ayuntamiento de Madrid",
+    "captured_utc": "2026-11-11T18:31Z",
+    "capture_method": "madrid.es answers HTTP 403 to scripted downloads (curl). The page was opened in a browser and the data-* attributes of the 25 div.event-location elements were read from the DOM verbatim (data-name, data-direction, data-latitude, data-longitude). Values below are copied unchanged."
+  },
+  "source_table_with_district": {
+    "url": "https://www.madrid.es/portales/munimadrid/es/Inicio/Seguridad-y-emergencias/SAMUR-Proteccion-Civil/?vgnextfmt=default&vgnextoid=c88fcdb1bfffa010VgnVCM100000d90ca8c0RCRD&vgnextchannel=f9cd31d3b28fe410VgnVCM1000000b205a0aRCRD&idCapitulo=1231815",
+    "title": "SAMUR - Protección Civil - Bases operativas en Madrid - Ayuntamiento de Madrid",
+    "captured_utc": "2026-11-11T18:31Z",
+    "capture_method": "Text of the HTML table 'Base | Dirección | Distrito' read in a browser, copied unchanged."
+  },
+  "bases": [
+    {"base": 0,  "data-name": "Base 0 - Base Central y Casa de Córdoba", "data-direction": "RONDA PROVINCIAS 7, 28011 MADRID", "data-latitude": "40.41197072174892", "data-longitude": "-3.74291798261513", "table_address": "Ronda de las Provincias, 4-6-7 (Base Central - Casa de Córdoba)", "table_district": "MONCLOA - ARAVACA"},
+    {"base": 1,  "data-name": "Base 1 - El Espinillo", "data-direction": "AVENIDA OROVILLA 50, 28041 MADRID", "data-latitude": "40.359540593327075", "data-longitude": "-3.6898908826788395", "table_address": "Avenida Orovilla, 50", "table_district": "VILLAVERDE"},
+    {"base": 2,  "data-name": "Base 2 - San Bernardo", "data-direction": "CALLE SAN BERNARDO 68, 28015 MADRID", "data-latitude": "40.426741015994494", "data-longitude": "-3.7065449666419865", "table_address": "Calle de San Bernardo, 68", "table_district": "CENTRO"},
+    {"base": 3,  "data-name": "Base 3 - Federico Salmón", "data-direction": "CALLE FEDERICO SALMON 8, 28016 MADRID", "data-latitude": "40.46311551875211", "data-longitude": "-3.667711614094374", "table_address": "Calle de Federico Salmón, 8", "table_district": "CHAMARTÍN"},
+    {"base": 4,  "data-name": "Base 4 - Ciudad Lineal", "data-direction": "CALLE PELOPONESO 9, 28032 MADRID", "data-latitude": "40.41553401395054", "data-longitude": "-3.6242586891532347", "table_address": "Calle Peloponeso, 9", "table_district": "CIUDAD LINEAL"},
+    {"base": 5,  "data-name": "Base 5 - Carabanchel", "data-direction": "CALLE EUGENIA DE MONTIJO 90, 28025 MADRID", "data-latitude": "40.37816680574747", "data-longitude": "-3.7483699670210755", "table_address": "Calle de Eugenia de Montijo, 90", "table_district": "CARABANCHEL"},
+    {"base": 6,  "data-name": "Base 6 - Pirineos", "data-direction": "CALLE PIRINEOS 1, 28040 MADRID", "data-latitude": "40.45833716353454", "data-longitude": "-3.7159371318379533", "table_address": "Francos Rodríguez, 77 (entrada Calle Pirineos, 1)", "table_district": "MONCLOA - ARAVACA"},
+    {"base": 7,  "data-name": "Base 7 - La Estrella", "data-direction": "TRAVESIA VINO 1, 28011 MADRID", "data-latitude": "40.41125847177365", "data-longitude": "-3.739516494003728", "table_address": "Travesía del Vino, 1", "table_district": "MONCLOA - ARAVACA"},
+    {"base": 8,  "data-name": "Base 8 - Hoyuelo", "data-direction": "CALLE HOYUELO 7, 28007 MADRID", "data-latitude": "40.40096941264061", "data-longitude": "-3.676132626757882", "table_address": "Calle Hoyuelo, 7", "table_district": "RETIRO"},
+    {"base": 9,  "data-name": "Base 9 - Hermenegildo Bielsa", "data-direction": "CALLE HERMENEGILDO BIELSA 1, 28026 MADRID", "data-latitude": "40.38992631163171", "data-longitude": "-3.702362174105349", "table_address": "Calle de Antonio López, 142 posterior", "table_district": "USERA"},
+    {"base": 10, "data-name": "Base 10 - Infanta Mercedes", "data-direction": "CALLE INFANTA MERCEDES 32, 28020 MADRID", "data-latitude": "40.45688525573908", "data-longitude": "-3.697820574707671", "table_address": "Calle de Infanta Mercedes, 32-34-36", "table_district": "TETUÁN"},
+    {"base": 11, "data-name": "Base 11 - Arequipa", "data-direction": "CALLE AREQUIPA 4, 28043 MADRID", "data-latitude": "40.46893075155886", "data-longitude": "-3.641669992094999", "table_address": "Calle Arequipa, 4", "table_district": "HORTALEZA"},
+    {"base": 12, "data-name": "Base 12 - Moratalaz", "data-direction": "CALLE BRUJAS 34, 28030 MADRID", "data-latitude": "40.399243734594684", "data-longitude": "-3.6283779852925", "table_address": "Calle Brujas, 38", "table_district": "MORATALAZ"},
+    {"base": 13, "data-name": "Base 13 - Avenida de Valladolid", "data-direction": "AVENIDA VALLADOLID 6, 28008 MADRID", "data-latitude": "40.429520252756355", "data-longitude": "-3.730085095692638", "table_address": "Avenida de Valladolid, 6", "table_district": "MONCLOA - ARAVACA"},
+    {"base": 14, "data-name": "Base 14 - Fuerte de Navidad", "data-direction": "CALLE CASUARINA 4, 28044 MADRID", "data-latitude": "40.381276800400784", "data-longitude": "-3.7644886371104347", "table_address": "Calle Casuarina,10", "table_district": "LATINA"},
+    {"base": 15, "data-name": "Base 15 - Colón (Subterráneo)", "data-direction": "PLAZA COLON 1, 28046 MADRID", "data-latitude": "40.425015727758705", "data-longitude": "-3.6911744065568346", "table_address": "Plaza de Colon (subterráneo)", "table_district": "SALAMANCA"},
+    {"base": 16, "data-name": "Base 16 - Isla Tabarca", "data-direction": "CALLE DOCTOR RAMON CASTROVIEJO 47, 28035 MADRID", "data-latitude": "40.47506283473481", "data-longitude": "-3.7217323224259635", "table_address": "Calle del Doctor Ramón Castro Viejo, 47", "table_district": "FUENCARRAL - EL PARDO"},
+    {"base": 17, "data-name": "Base 17 - Vicálvaro", "data-direction": "CALLE LA HUERTA DE LOS RUEDA 37, 28052 MADRID", "data-latitude": "40.39313004706864", "data-longitude": "-3.5873370200417405", "table_address": "Calle las Santeras, 39", "table_district": "VICÁLVARO"},
+    {"base": 19, "data-name": "Base 19 - Las Rosas", "data-direction": "CALLE MARIA SEVILLA DIAGO 40, 28022 MADRID", "data-latitude": "40.43354043190754", "data-longitude": "-3.604608679638419", "table_address": "Calle de María Sevilla Diago, 40", "table_district": "SAN BLAS - CANILLEJAS"},
+    {"base": 20, "data-name": "Base 20 - Villa de Vallecas", "data-direction": "CALLE REAL DE ARGANDA 64, 28031 MADRID", "data-latitude": "40.379091100884246", "data-longitude": "-3.6141539819852615", "table_address": "Calle Real de Arganda, 64", "table_district": "VILLA DE VALLECAS"},
+    {"base": 21, "data-name": "Base 21 - Barajas", "data-direction": "CALLE PLAYA AMERICA 34, 28042 MADRID", "data-latitude": "40.475249833916365", "data-longitude": "-3.585390655066911", "table_address": "Calle Playa America, 34", "table_district": "BARAJAS"},
+    {"base": 22, "data-name": "Base 22 - Ventas", "data-direction": "CALLE PEDRO HEREDIA 34, 28028 MADRID", "data-latitude": "40.43012558611398", "data-longitude": "-3.662360494391373", "table_address": "Calle Pedro Heredia, 34", "table_district": "SALAMANCA"},
+    {"base": 23, "data-name": "Base 23 - Legazpi", "data-direction": "PLAZA LEGAZPI 7, 28045 MADRID", "data-latitude": "40.38981546123414", "data-longitude": "-3.6958118530521515", "table_address": "Plaza de Legazpi, 7", "table_district": "ARGANZUELA"},
+    {"base": 25, "data-name": "Base 25 - Monte Esquinza", "data-direction": "CALLE MONTE ESQUINZA 41, 28010 MADRID", "data-latitude": "40.430393009834795", "data-longitude": "-3.6919470745518383", "table_address": "Calle del Monte Esquinza, 41", "table_district": "CHAMBERÍ"},
+    {"base": 26, "data-name": "Base 26 - Buenos Aires", "data-direction": "AVENIDA BUENOS AIRES 17, 28015 MADRID", "data-latitude": "40.426741015994494", "data-longitude": "-3.7065449666419865", "table_address": "Avenida de Buenos Aires, 17", "table_district": "PUENTE DE VALLECAS"}
+  ]
+}

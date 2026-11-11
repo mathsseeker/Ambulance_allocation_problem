@@ -1,0 +1,16 @@
+edmonton_T8_I8_S2_seed0_cv: |I|=8 |J|=16 |V|=180 S=[4, 10] C=[1, 1, 1, 2, 2, 3, 3, 2, 3, 3, 1, 1, 1, 1, 1, 1]
+T=8 2T=16 q=0.3 alpha=0.97 z=1.881 cv=0.2636 M=2 | |V2|=170 outside V2=10 | feasibility condition: True
+  i  delta  home  shift
+  0     13    16    127
+  1     12    15    290
+  2     11    11    364
+  3      7    16     43
+  4      8     8      4
+  5      2    15     67
+  6      9    12    210
+  7      2     1    274
+
+status OPTIMAL (25.67 ms, 705 vars, 338 constrs): optimal: overtime 0 min, 0 2T-rule violations, 4 moves (2 above M), coverage 0.646221
+moves: amb 2: 11 -> 16, amb 3: 7 -> 14, amb 5: 2 -> 15, amb 6: 9 -> 3
+evaluate() agrees: True, feasible: True
+status quo (nobody moves) is infeasible (an ambulance sits at a sleeping base or a base is over capacity)

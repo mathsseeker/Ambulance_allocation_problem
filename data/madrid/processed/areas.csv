@@ -1,0 +1,9 @@
+v,barrio,population,d_v,lat,lon,cod_barrio,area_km2,osrm_snap_m,method
+1,El Pardo,3472,0.0135605401,40.5528996,-3.7674866,81,187.583,1570.6,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+2,Fuentelarreina,3567,0.0139315802,40.4811063,-3.7417866,82,1.383,68.9,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+3,Peñagrande,45120,0.1762245300,40.4787834,-3.7258026,83,2.887,0.4,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+4,Pilar,46659,0.1822353800,40.4771396,-3.7095904,84,1.363,15.3,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+5,La Paz,31835,0.1243374981,40.4811439,-3.6965974,85,2.155,7.3,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+6,Valverde,67737,0.2645594191,40.5002267,-3.6787885,86,8.981,28.9,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+7,Mirasierra,37918,0.1480957830,40.4963134,-3.7195721,87,6.993,13.0,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total
+8,El Goloso,19729,0.0770552694,40.5343885,-3.7000043,88,26.493,2.3,lat/lon=centroid of official barrio polygon (EPSG:25830->4326); d_v=population/district total

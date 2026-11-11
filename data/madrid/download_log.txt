@@ -1,0 +1,9 @@
+2026-11-11T18:32:32Z
+Barrios.zip | https://geoportal.madrid.es/fsdescargas/IDEAM_WBGEOPORTAL/LIMITES_ADMINISTRATIVOS/Barrios/Barrios.zip | HTTP 200 | 2026-11-11T18:32:32Z
+Barrios.csv | https://geoportal.madrid.es/fsdescargas/IDEAM_WBGEOPORTAL/LIMITES_ADMINISTRATIVOS/Barrios/Barrios.csv | HTTP 200 | 2026-11-11T18:32:32Z
+Distritos.zip | https://geoportal.madrid.es/fsdescargas/IDEAM_WBGEOPORTAL/LIMITES_ADMINISTRATIVOS/Distritos/Distritos.zip | HTTP 200 | 2026-11-11T18:32:32Z
+poblacion_distrito_barrio.csv | https://datos.madrid.es/dataset/300557-0-poblacion-distrito-barrio/resource/300557-0-poblacion-distrito-barrio-csv/download/300557-0-poblacion-distrito-barrio-csv.csv | HTTP 200 | 2026-11-11T18:32:33Z
+poblacion_distrito_barrio_estructura.pdf | https://datos.madrid.es/dataset/300557-0-poblacion-distrito-barrio/resource/300557-1-poblacion-distrito-barrio/download/estructurapoblacion1enero.pdf | HTTP 200 | 2026-11-11T18:32:33Z
+samur_activaciones_2025.csv | https://datos.madrid.es/dataset/300178-0-samur-activaciones/resource/300178-3-samur-activaciones-csv/download/300178-3-samur-activaciones-csv.csv | HTTP 200 | 2026-11-11T18:32:34Z
+samur_activaciones_estructura.pdf | https://datos.madrid.es/dataset/300178-0-samur-activaciones/resource/300178-16-samur-activaciones/download/estructura_ds_activaciones_samur.pdf | HTTP 200 | 2026-11-11T18:32:35Z
+nominatim_base26.json | https://nominatim.openstreetmap.org/search?street=17+Avenida+de+Buenos+Aires&city=Madrid&country=Spain&format=jsonv2&addressdetails=1&limit=5 | HTTP 200 | 2026-11-11T18:33:48Z
