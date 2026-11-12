@@ -41,6 +41,15 @@ def is_valid(inst, plan):
     return bool(np.all(n <= inst.C))                    # (3) capacity
 
 
+def has_valid_plan(inst):
+    """Model R has a valid plan if and only if every base can hold its fixed ambulances
+    and the awake bases have room for all free ambulances (PDF, section 7)."""
+    if np.any(inst.e > inst.C):
+        return False
+    free_spots = sum(int(inst.C[j] - inst.e[j]) for j in range(inst.nJ) if j not in inst.S)
+    return free_spots >= inst.nI
+
+
 def first_three_goals(inst, reach_2T, overtime, moves):
     """Goals 1-3, given: reach_2T[v] = ambulances within 2T of area v,
     overtime = total overtime minutes, moves = ambulances not at their current base."""

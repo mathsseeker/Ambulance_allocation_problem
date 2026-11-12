@@ -8,6 +8,8 @@ Each iteration:
   3. if it is better than the best plan so far, keep it
 Stop after `iterations` iterations, or earlier when `time_limit` seconds have passed
 (at least one iteration always runs, so there is always a plan).
+If the instance has no valid plan at all (not enough room at awake bases), or beta / mode
+are out of range, grasp raises a ValueError with a clear message.
 
 The result is a dict:
   plan            best plan found {ambulance i: base j}
@@ -24,10 +26,17 @@ import numpy as np
 
 from construction import construct
 from local_search import local_search
-from scoring import goals, key
+from scoring import goals, has_valid_plan, key
 
 
 def grasp(inst, beta=0.25, iterations=100, time_limit=None, seed=0, mode="first"):
+    if not has_valid_plan(inst):
+        raise ValueError("no valid plan exists: some base holds more fixed ambulances than its capacity, "
+                         "or the awake bases do not have room for all free ambulances")
+    if not 0 <= beta <= 1:
+        raise ValueError(f"beta must be between 0 and 1, got {beta}")
+    if mode not in ("first", "best"):
+        raise ValueError(f"mode must be 'first' or 'best', got {mode!r}")
     rng = np.random.default_rng(seed)
     start = time.perf_counter()
     best_plan, best_key, best_iteration = None, None, 0

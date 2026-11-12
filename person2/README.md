@@ -23,6 +23,16 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `checks/check_local_search.py` | Valid / never worse / true local optimum; greedy + local search vs Gurobi; best-of-20 per β; medium runtime | ✅ 660/660 correct, optimal 50/55, < 0.5 s |
 | `grasp.py` | **The heuristic**: `grasp(inst, beta, iterations, time_limit, seed, mode)` repeats construction + local search and returns the best plan, its goals, runtime and an improvement history | ✅ done |
 | `checks/check_grasp.py` | Valid, reproducible, time limit; optimal vs number of iterations; medium runtime | ✅ 55/55 optimal from 50 iterations |
+| `tests/` | pytest tests, no Gurobi needed (about 5 s): goals checked by hand on a tiny 3-base map, Model R's strict order, edge cases, GRASP = brute force on 30 instances | ✅ 49/49 pass |
+
+## Tests (`tests/test_person2.py`)
+
+| Group | What is tested |
+|---|---|
+| Scorer by hand | On a tiny 3-base, 2-area map (`tests/conftest.py`) every goal is worked out by hand: coverage, 2T rule, overtime, extra moves, the 3 hard rules; fast scorer = `key()` for every plan |
+| Strict order | Goal 1 beats overtime (an ambulance with no shift left still moves if that fixes the 2T rule); overtime beats coverage |
+| Edge cases | No free ambulances; one ambulance; ambulance at a sleeping base (forced move, counted); only one free spot left; no valid plan → clear error; bad β or mode → clear error; tied scores |
+| GRASP behaviour | β = 0 equals greedy; same seed = same plan; local search never makes a plan worse; time limit stops the search; GRASP finds the brute-force optimum on 30 random small instances |
 
 ## Construction results (55 small instances, 20 runs each)
 
@@ -104,6 +114,13 @@ From the repo folder, once:
 ```bash
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
+
+Run the tests (about 5 seconds, no Gurobi needed):
+
+```bash
+.venv/bin/python -m pytest person2/tests -v
+```
+
 
 Run the checks (a few minutes each):
 
