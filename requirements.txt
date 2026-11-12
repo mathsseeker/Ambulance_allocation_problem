@@ -5,3 +5,4 @@ pyyaml>=6.0
 pytest>=8.0
 gurobipy>=12.0   # pip licence is size-limited (2000 vars / constraints)
 scipy>=1.11
+matplotlib>=3.8

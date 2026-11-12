@@ -24,6 +24,76 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `grasp.py` | **The heuristic**: `grasp(inst, beta, iterations, time_limit, seed, mode)` repeats construction + local search and returns the best plan, its goals, runtime and an improvement history | ✅ done |
 | `checks/check_grasp.py` | Valid, reproducible, time limit; optimal vs number of iterations; medium runtime | ✅ 55/55 optimal from 50 iterations |
 | `tests/` | pytest tests, no Gurobi needed (about 5 s): goals checked by hand on a tiny 3-base map, Model R's strict order, edge cases, GRASP = brute force on 30 instances | ✅ 49/49 pass |
+| `experiment/run_experiment.py` | The β / iterations experiment: every β × 5 seeds on 55 small + 8 medium instances; saves `results/runs.csv` and `results/history.csv` | ✅ done (about 30 min) |
+| `experiment/make_plots.py` | Tables (`results/tables.md`) and plots (`results/*.png`) from the saved results | ✅ done |
+
+## β / iterations experiment (`experiment/`)
+
+**Setup.** β ∈ {0, 0.25, 0.5, 0.75, 1}, 5 seeds each, first-improvement local search.
+One GRASP run per (instance, β, seed); its improvement history gives the best plan after
+any number of iterations or seconds (fewer iterations with the same seed = the first
+iterations of the same run).
+
+- **Small**: the 55 instances above, 50 iterations, compared with **Gurobi's optimum**.
+- **Medium**: 8 instances (3 on Fez case 1 with 18 ambulances, 2 on Fez case 2 with 22,
+  3 on Edmonton with 20), 100 iterations. The optimum is unknown (Gurobi pip licence too small),
+  so each run is compared with the **best known plan** = the best plan found by any of its 25 runs.
+
+**Small instances: % of runs that reach the optimum**
+
+| β | 1 it. | 5 it. | 10 it. | 20 it. | 50 it. |
+|---|---|---|---|---|---|
+| 0 | 91% | 91% | 91% | 91% | 91% |
+| 0.25 | 82% | 96% | 97% | 99% | **100%** |
+| 0.5 | 85% | 95% | 96% | 98% | 99% |
+| 0.75 | 81% | 95% | 96% | 97% | 98% |
+| 1 | 82% | 93% | 96% | 97% | 97% |
+
+**Medium instances: % of runs that reach the best known plan**
+
+| β | 1 it. | 5 it. | 10 it. | 20 it. | 50 it. | 100 it. |
+|---|---|---|---|---|---|---|
+| 0 | 50% | 50% | 50% | 50% | 50% | 50% |
+| 0.25 | 38% | 40% | 40% | 52% | 58% | 62% |
+| 0.5 | 35% | 38% | 38% | 40% | 65% | 72% |
+| 0.75 | 38% | 40% | 45% | 50% | 55% | 65% |
+| 1 | 32% | 42% | 48% | 50% | 62% | 72% |
+
+**Medium instances after 100 iterations: where the other runs lose** (40 runs per β;
+"goal k" = first goal that is worse than the best known plan)
+
+| β | equal to best | goal 1 | goal 2 | goal 3 | goal 4 | avg goal-4 gap | max goal-4 gap |
+|---|---|---|---|---|---|---|---|
+| 0 | 20 | 0 | 0 | **10** | 10 | 0.31% | 1.80% |
+| 0.25 | 25 | 0 | 0 | 0 | 15 | 0.11% | 0.57% |
+| 0.5 | 29 | 0 | 0 | 0 | 11 | 0.14% | 2.40% |
+| 0.75 | 26 | 0 | 0 | 0 | 14 | 0.15% | 2.40% |
+| 1 | 29 | 0 | 0 | 0 | 11 | 0.09% | 0.57% |
+
+Average runtime of 100 iterations on the medium instances: 4.5 s for β = 0, about 8 s for β > 0
+(more varied starts need more local search). Edmonton about 4 s, Fez case 1 about 7 s, Fez case 2 about 13 s.
+
+![quality vs iterations](experiment/results/quality_vs_iterations.png)
+![quality vs time](experiment/results/quality_vs_time.png)
+
+**What it shows**
+
+1. **β = 0 (greedy) never improves with more iterations**: construction is deterministic, so every
+   iteration rebuilds the same plan. It is the best choice for exactly 1 iteration, but on medium
+   instances it is the only setting that loses on a **higher-priority goal** (goal 3, extra moves).
+2. **Any β > 0 keeps improving with more iterations**, and overtakes greedy after about 5 iterations
+   (small) or between 20 and 50 iterations (medium). This is the reason GRASP adds randomness.
+3. **No run with β > 0 is ever worse on goals 1-3** than the best known plan. They differ only on
+   coverage (goal 4), on average by 0.1-0.15%.
+4. **Between β > 0 the differences are small.** β = 0.25 is the only one that reaches the optimum in
+   100% of the small runs and has the smallest worst case on medium (0.57%); β = 0.5 and 1 reach
+   the best known plan a little more often on medium (72% vs 62%), but with only 8 medium instances
+   that difference is a few runs. **Default: β = 0.25.**
+5. **Iterations**: 50 are enough on small instances. On medium instances the curves are still
+   rising at 100, so more iterations (or a time limit of a few tens of seconds) still pay off.
+
+**Limit**: on medium instances "best known" is not a proven optimum; the academic Gurobi licence
+would let us check it.
 
 ## Tests (`tests/test_person2.py`)
 
@@ -142,6 +212,16 @@ Run the checks (a few minutes each):
 
 ```bash
 .venv/bin/python person2/checks/check_grasp.py
+```
+
+Run the β / iterations experiment (about 30 minutes), then make its tables and plots:
+
+```bash
+.venv/bin/python person2/experiment/run_experiment.py
+```
+
+```bash
+.venv/bin/python person2/experiment/make_plots.py
 ```
 
 ## Data notes
