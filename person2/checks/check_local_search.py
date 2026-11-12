@@ -17,7 +17,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))   # the person2 folder
 from instances import load_map, random_instance                  # noqa: E402
-from scoring import is_valid, key                                # noqa: E402
+from scoring import PlanState, is_valid, key                     # noqa: E402
 from construction import construct, greedy                       # noqa: E402
 from local_search import local_search, neighbours                # noqa: E402
 from check_construction import small_instances, same_key         # noqa: E402
@@ -28,8 +28,13 @@ RUNS = 20
 
 
 def is_local_optimum(inst, plan):
+    """No move or swap improves the plan, scored from scratch with key() (not the fast PlanState)."""
     k = key(inst, plan)
-    return all(not key(inst, nb) < k for nb in neighbours(inst, plan))
+    for change in neighbours(PlanState(inst, plan)):
+        neighbour = {**plan, **dict(change)}
+        if not is_valid(inst, neighbour) or key(inst, neighbour) < k:
+            return False
+    return True
 
 
 def main():

@@ -17,22 +17,22 @@ but Model R's key has four goals compared in order, so there is no single range.
 """
 import numpy as np
 
-from scoring import ambulances_per_base, key
+from scoring import PlanState
 
 
-def open_bases(inst, plan):
-    """Bases that can still take one more free ambulance: awake and below capacity."""
-    n = ambulances_per_base(inst, plan)
+def open_bases(inst, n):
+    """Bases that can still take one more free ambulance: awake and below capacity.
+    n[j] = ambulances at base j now."""
     return [j for j in range(inst.nJ) if j not in inst.S and n[j] < inst.C[j]]
 
 
-def candidates(inst, plan):
+def candidates(state):
     """Every valid next placement as (key of the partial plan, i, j), best first."""
-    result = []
-    for j in open_bases(inst, plan):
+    inst, result = state.inst, []
+    for j in open_bases(inst, state.n):
         for i in range(inst.nI):
-            if i not in plan:
-                result.append((key(inst, {**plan, i: j}), i, j))
+            if i not in state.plan:
+                result.append((state.key_after([(i, j)]), i, j))
     return sorted(result)
 
 
@@ -42,13 +42,13 @@ def rcl_size(n_candidates, beta):
 
 
 def construct(inst, beta, rng):
-    plan = {}
-    while len(plan) < inst.nI:
-        cands = candidates(inst, plan)
+    state = PlanState(inst, {})                         # empty plan
+    while len(state.plan) < inst.nI:
+        cands = candidates(state)
         rcl = cands[:rcl_size(len(cands), beta)]
         _, i, j = rcl[rng.integers(len(rcl))]
-        plan[i] = j
-    return plan
+        state.apply([(i, j)])
+    return state.plan
 
 
 def greedy(inst):
