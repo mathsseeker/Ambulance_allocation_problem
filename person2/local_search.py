@@ -12,37 +12,43 @@ Stop when no change improves the plan: a local optimum.
 
 mode="first": take the first improving change found, then scan again.
 mode="best":  check all changes, take the best one, then scan again.
+
+Changes are scored with PlanState.key_after, which only updates what the
+change touches (same key as scoring.key, much faster).
 """
 from construction import open_bases
-from scoring import key
+from scoring import PlanState
 
 
-def neighbours(inst, plan):
-    """Every plan reachable with one move or one swap. All of them are valid."""
-    bases = open_bases(inst, plan)               # awake bases with a free spot
+def neighbours(state):
+    """Every change (one move or one swap) from the current plan. All keep the plan valid."""
+    inst, plan = state.inst, state.plan
+    bases = open_bases(inst, state.n)            # awake bases with a free spot
     for i in range(inst.nI):                     # MOVE
         for j in bases:
             if j != plan[i]:
-                yield {**plan, i: j}
+                yield [(i, j)]
     for i1 in range(inst.nI):                    # SWAP
         for i2 in range(i1 + 1, inst.nI):
             if plan[i1] != plan[i2]:
-                yield {**plan, i1: plan[i2], i2: plan[i1]}
+                yield [(i1, plan[i2]), (i2, plan[i1])]
 
 
 def local_search(inst, plan, mode="first"):
-    current, current_key = dict(plan), key(inst, plan)
+    state = PlanState(inst, plan)
+    current_key = state.key_after([])
     improved = True
     while improved:
         improved = False
-        best, best_key = None, current_key
-        for candidate in neighbours(inst, current):
-            k = key(inst, candidate)
-            if k < best_key:
-                best, best_key = candidate, k
+        best_change, best_key = None, current_key
+        for change in neighbours(state):
+            k = state.key_after(change, to_beat=best_key)
+            if k is not None and k < best_key:
+                best_change, best_key = change, k
                 if mode == "first":
                     break
-        if best is not None:
-            current, current_key = best, best_key
+        if best_change is not None:
+            state.apply(best_change)
+            current_key = best_key
             improved = True
-    return current
+    return state.plan

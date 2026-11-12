@@ -13,14 +13,15 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 
 | File | What it does | Status |
 |---|---|---|
-| `scoring.py` | Scores a plan: the four goals of Model R and the 3 hard rules | ✅ done, checked |
+| `scoring.py` | Scores a plan: the four goals of Model R and the 3 hard rules. `PlanState` scores small changes fast (same keys) | ✅ done, checked |
 | `instances.py` | Loads a map and draws a random situation, for testing only (Person 3 will make the official instances) | ✅ done |
 | `checks/check_scoring.py` | Proves `scoring.py` agrees with Gurobi and with brute force | ✅ 55/55 OK |
+| `checks/check_fast_scoring.py` | Proves the fast `PlanState` gives exactly the same keys as `key()` | ✅ 5028/5028 identical |
 | `construction.py` | GRASP construction: place ambulances one at a time, picking at random from the RCL of the best placements. `greedy()` = β = 0 | ✅ done |
 | `checks/check_construction.py` | Greedy vs Gurobi; validity, diversity and best-of-20 for each β; runtime on medium instances | ✅ always valid, greedy optimal 26/55, < 1 s |
 | `local_search.py` | Local search: MOVE one ambulance or SWAP two, keep only improvements, stop at a local optimum. First or best improvement | ✅ done |
 | `checks/check_local_search.py` | Valid / never worse / true local optimum; greedy + local search vs Gurobi; best-of-20 per β; medium runtime | ✅ 660/660 correct, optimal 50/55, < 0.5 s |
-| `grasp.py` | **The heuristic**: `grasp(inst, beta, iterations, time_limit, seed, mode)` repeats construction + local search and returns the best plan, its goals, runtime and an improvement history | ✅ done (slow on Fez case 3, see below) |
+| `grasp.py` | **The heuristic**: `grasp(inst, beta, iterations, time_limit, seed, mode)` repeats construction + local search and returns the best plan, its goals, runtime and an improvement history | ✅ done |
 | `checks/check_grasp.py` | Valid, reproducible, time limit; optimal vs number of iterations; medium runtime | ✅ 55/55 optimal from 50 iterations |
 
 ## Construction results (55 small instances, 20 runs each)
@@ -59,12 +60,20 @@ Optimal on the 55 small instances, 3 seeds:
 |---|---|---|---|---|---|
 | optimal (of 55) | 45, 44, 45 | 52, 52, 52 | 54, 54, 53 | 54, 55, 55 | 55, 55, 55 |
 
-Runtime of 100 iterations on medium instances: Fez case 1 (18 ambulances) 17 s, case 2 (22) 38 s,
-case 3 (33 ambulances, 40 bases) **304 s**, Edmonton (20) 10 s.
+Runtime of 100 iterations on medium instances, before → after the speed-up:
 
-**Known issue:** every candidate plan is scored from scratch, so one iteration on Fez case 3
-takes about 3 s, and the time limit can only stop between iterations. To fix next:
-score only what a move or swap changes (incremental evaluation).
+| instance | ambulances | before | after |
+|---|---|---|---|
+| Fez case 1 (18 bases) | 18 | 17 s | 6.5 s |
+| Fez case 2 (22 bases) | 22 | 38 s | 13.4 s |
+| Fez case 3 (40 bases) | 33 | 304 s | 112 s |
+| Edmonton (16 bases) | 20 | 10 s | 4.4 s |
+
+**Speed-up (incremental scoring):** `PlanState` remembers the counts of the current plan, so a
+move or swap only updates what it touches, and goal 4 is skipped when goals 1-3 already show
+a change is worse. The plans found are **identical** to the plain version
+(495/495 GRASP runs compared, plus `checks/check_fast_scoring.py`: 5028/5028 identical keys).
+The time limit is still checked between iterations (one iteration on Fez case 3 takes about 1 s).
 
 ## Key ideas
 
@@ -100,6 +109,10 @@ Run the checks (a few minutes each):
 
 ```bash
 .venv/bin/python person2/checks/check_scoring.py
+```
+
+```bash
+.venv/bin/python person2/checks/check_fast_scoring.py
 ```
 
 ```bash
