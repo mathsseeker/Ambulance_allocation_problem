@@ -16,6 +16,8 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `scoring.py` | Scores a plan: the four goals of Model R and the 3 hard rules | ✅ done, checked |
 | `instances.py` | Loads a map and draws a random situation, for testing only (Person 3 will make the official instances) | ✅ done |
 | `checks/check_scoring.py` | Proves `scoring.py` agrees with Gurobi and with brute force | ✅ 55/55 OK |
+| `greedy.py` | Greedy construction: place ambulances one at a time, always the best placement (= GRASP with β = 0) | ✅ done |
+| `checks/check_greedy.py` | Greedy vs Gurobi on small instances; runtime on medium ones | ✅ valid 55/55, optimal 26/55, < 1 s |
 
 ## Key ideas
 
@@ -47,10 +49,14 @@ From the repo folder, once:
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
-Check the scorer (about a minute):
+Check the scorer (about a minute) and the greedy construction:
 
 ```bash
 .venv/bin/python person2/checks/check_scoring.py
+```
+
+```bash
+.venv/bin/python person2/checks/check_greedy.py
 ```
 
 ## Data notes
