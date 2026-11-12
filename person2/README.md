@@ -18,6 +18,8 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `checks/check_scoring.py` | Proves `scoring.py` agrees with Gurobi and with brute force | ✅ 55/55 OK |
 | `construction.py` | GRASP construction: place ambulances one at a time, picking at random from the RCL of the best placements. `greedy()` = β = 0 | ✅ done |
 | `checks/check_construction.py` | Greedy vs Gurobi; validity, diversity and best-of-20 for each β; runtime on medium instances | ✅ always valid, greedy optimal 26/55, < 1 s |
+| `local_search.py` | Local search: MOVE one ambulance or SWAP two, keep only improvements, stop at a local optimum. First or best improvement | ✅ done |
+| `checks/check_local_search.py` | Valid / never worse / true local optimum; greedy + local search vs Gurobi; best-of-20 per β; medium runtime | ✅ 660/660 correct, optimal 50/55, < 0.5 s |
 
 ## Construction results (55 small instances, 20 runs each)
 
@@ -33,6 +35,19 @@ Randomness alone does not beat greedy: the RCL brings in variety, but also worse
 That is expected in GRASP: construction gives **different starting points**, and local search
 (next step) turns them into good plans. Whether β > 0 then pays off is the β sensitivity
 experiment.
+
+## Local search results (same 55 instances)
+
+| Method | optimal |
+|---|---|
+| greedy | 26/55 |
+| greedy + local search (first improvement) | 50/55 |
+| greedy + local search (best improvement) | 49/55 |
+| best of 20 × (construction + local search), β = 0.25 | **55/55** |
+| same, β = 0.5 / 0.75 / 1 | 51 / 54 / 52 of 55 |
+
+With local search, a little randomness (β = 0.25) beats pure greedy: this is why GRASP repeats
+construction + local search from different random starts.
 
 ## Key ideas
 
@@ -64,7 +79,7 @@ From the repo folder, once:
 python -m venv .venv && .venv/bin/pip install -r requirements.txt
 ```
 
-Check the scorer and the construction (a few minutes each):
+Run the checks (a few minutes each):
 
 ```bash
 .venv/bin/python person2/checks/check_scoring.py
@@ -72,6 +87,10 @@ Check the scorer and the construction (a few minutes each):
 
 ```bash
 .venv/bin/python person2/checks/check_construction.py
+```
+
+```bash
+.venv/bin/python person2/checks/check_local_search.py
 ```
 
 ## Data notes
