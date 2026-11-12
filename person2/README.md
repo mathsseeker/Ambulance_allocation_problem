@@ -25,6 +25,7 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `checks/check_grasp.py` | Valid, reproducible, time limit; optimal vs number of iterations; medium runtime | ✅ 55/55 optimal from 50 iterations |
 | `tests/` | pytest tests, no Gurobi needed (about 5 s): goals checked by hand on a tiny 3-base map, Model R's strict order, edge cases, GRASP = brute force on 30 instances | ✅ 49/49 pass |
 | `experiment/run_experiment.py` | The β / iterations experiment: every β × 5 seeds on 55 small + 8 medium instances; saves `results/runs.csv` and `results/history.csv` | ✅ done (about 30 min) |
+| `report/heuristic_design.tex` (+ `.pdf`) | Report section 3, Heuristic Design: method, construction and RCL, moves, acceptance, parameters, validation and choice of β. Same notation as Model R's formulation | ✅ draft done |
 | `experiment/make_plots.py` | Tables (`results/tables.md`) and plots (`results/*.png`) from the saved results | ✅ done |
 
 ## β / iterations experiment (`experiment/`)
