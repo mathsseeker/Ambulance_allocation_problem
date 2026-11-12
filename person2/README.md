@@ -20,6 +20,8 @@ The model itself is in `reports/Model_R_Formulation.pdf`.
 | `checks/check_construction.py` | Greedy vs Gurobi; validity, diversity and best-of-20 for each β; runtime on medium instances | ✅ always valid, greedy optimal 26/55, < 1 s |
 | `local_search.py` | Local search: MOVE one ambulance or SWAP two, keep only improvements, stop at a local optimum. First or best improvement | ✅ done |
 | `checks/check_local_search.py` | Valid / never worse / true local optimum; greedy + local search vs Gurobi; best-of-20 per β; medium runtime | ✅ 660/660 correct, optimal 50/55, < 0.5 s |
+| `grasp.py` | **The heuristic**: `grasp(inst, beta, iterations, time_limit, seed, mode)` repeats construction + local search and returns the best plan, its goals, runtime and an improvement history | ✅ done (slow on Fez case 3, see below) |
+| `checks/check_grasp.py` | Valid, reproducible, time limit; optimal vs number of iterations; medium runtime | ✅ 55/55 optimal from 50 iterations |
 
 ## Construction results (55 small instances, 20 runs each)
 
@@ -48,6 +50,21 @@ experiment.
 
 With local search, a little randomness (β = 0.25) beats pure greedy: this is why GRASP repeats
 construction + local search from different random starts.
+
+## GRASP results (β = 0.25)
+
+Optimal on the 55 small instances, 3 seeds:
+
+| iterations | 1 | 5 | 10 | 20 | 50 |
+|---|---|---|---|---|---|
+| optimal (of 55) | 45, 44, 45 | 52, 52, 52 | 54, 54, 53 | 54, 55, 55 | 55, 55, 55 |
+
+Runtime of 100 iterations on medium instances: Fez case 1 (18 ambulances) 17 s, case 2 (22) 38 s,
+case 3 (33 ambulances, 40 bases) **304 s**, Edmonton (20) 10 s.
+
+**Known issue:** every candidate plan is scored from scratch, so one iteration on Fez case 3
+takes about 3 s, and the time limit can only stop between iterations. To fix next:
+score only what a move or swap changes (incremental evaluation).
 
 ## Key ideas
 
@@ -91,6 +108,10 @@ Run the checks (a few minutes each):
 
 ```bash
 .venv/bin/python person2/checks/check_local_search.py
+```
+
+```bash
+.venv/bin/python person2/checks/check_grasp.py
 ```
 
 ## Data notes
